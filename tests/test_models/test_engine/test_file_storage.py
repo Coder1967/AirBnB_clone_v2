@@ -28,6 +28,10 @@ class test_fileStorage(unittest.TestCase):
         """ __objects is initially empty """
         self.assertEqual(len(storage.all()), 0)
 
+    @unittest.skip("skipping"):
+        def test_nothing(self):
+            pass
+
     def test_new(self):
         """ New object is correctly added to __objects """
         new = BaseModel()
