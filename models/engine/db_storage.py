@@ -10,7 +10,7 @@ from models.review import Review
 from models.state import State
 from models.user import User
 from models.amenity import Amenity
-classes = {"City": City, "State": State} 
+classes = {"City": City, "State": State, "User":User} 
 class DBStorage:
     """ Class DBStorage handles storage using DB"""
     __engine = None
