@@ -37,13 +37,13 @@ class DBStorage:
                 sesh = self.__session.query(classes[key]).all()
                 for obj in sesh:
                     key1 =  key + "." + obj.id
-                    new_dict[key1] = obj
+                    new_dict[key1] = obj.to_dict()
         else:
             if cls in classes:
                 sesh = self.__session.query(cls).all()
                 for obj in sesh:
                     key1 = key + "." + obj.id
-                    new_dict[key1] = obj
+                    new_dict[key1] = obj.to_dict()
         return new_dict
 
     def new(self, obj):
