@@ -10,7 +10,7 @@ from models.review import Review
 from models.state import State
 from models.user import User
 from models.amenity import Amenity
-classes = {"City": City, "State": State, "User":User} 
+classes = {"City": City, "State": State, "User": User} 
 class DBStorage:
     """ Class DBStorage handles storage using DB"""
     __engine = None
@@ -37,13 +37,13 @@ class DBStorage:
                 sesh = self.__session.query(classes[key]).all()
                 for obj in sesh:
                     key1 =  key + "." + obj.id
-                    new_dict[key1] = obj.to_dict()
+                    new_dict[key1] = obj
         else:
             if cls in classes:
                 sesh = self.__session.query(cls).all()
                 for obj in sesh:
                     key1 = key + "." + obj.id
-                    new_dict[key1] = obj.to_dict()
+                    new_dict[key1] = obj
         return new_dict
 
     def new(self, obj):
