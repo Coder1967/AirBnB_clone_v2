@@ -10,7 +10,10 @@ from models.review import Review
 from models.state import State
 from models.user import User
 from models.amenity import Amenity
-classes = {"City": City, "State": State, "User": User, "Place": Place, "Review": Review } 
+classes = {"City": City, "State": State, "User": User,
+        "Place": Place, "Review": Review, 'Amenity': Amenity} 
+
+
 class DBStorage:
     """ Class DBStorage handles storage using DB"""
     __engine = None
@@ -28,7 +31,7 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """ return all instances of the class if not 
+        """ return all instances of the class if not
         null else, return all obj"""
         new_dict = {}
 
@@ -36,7 +39,7 @@ class DBStorage:
             for key in classes.keys():
                 sesh = self.__session.query(classes[key]).all()
                 for obj in sesh:
-                    key1 =  key + "." + obj.id
+                    key1 = key + "." + obj.id
                     new_dict[key1] = obj.to_dict()
         else:
             if cls in classes:
