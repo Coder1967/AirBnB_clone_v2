@@ -4,8 +4,6 @@ from os import getenv
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey, Integer, Float, Table
 from sqlalchemy.orm import relationship
-from models.review import Review
-from models.amenity import Amenity
 
 metadata = Base.metadata
 place_amenity = Table("place_amenity",
@@ -33,11 +31,11 @@ class Place(BaseModel, Base):
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
     amenity_ids = []
-    if getenv("HBNB_TYPE_STORAGE") == "db":
+    if getenv('HBNB_TYPE_STORAGE') == 'db':
         reviews = relationship("Review", backref="place")
         amenities = relationship("Amenity", secondary=place_amenity,
-                                  backref='place_amenities',
-                                  viewonly=False)
+                                 back_populates='place_amenities',
+                                 viewonly=False)
     else:
         @property
         def reviews(self):
@@ -48,6 +46,7 @@ class Place(BaseModel, Base):
                 if review.place_id == self.id:
                     review_list.append(review)
             return review_list
+
         @property
         def amenities(self):
             """ getter for list of amenities related to the place"""
