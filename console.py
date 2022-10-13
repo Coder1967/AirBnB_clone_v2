@@ -223,22 +223,21 @@ class HBNBCommand(cmd.Cmd):
         print("Destroys an individual instance of a class")
         print("[Usage]: destroy <className> <objectId>\n")
 
-    def do_all(self, arg):
+    def do_all(self, args):
         """Prints string representations of instances"""
-        args = shlex.split(arg)
-        obj_list = []
-        if len(args) == 0:
-            obj_dict = models.storage.all()
-        elif args[0] in HBNBCommand.classes:
-            obj_dict = models.storage.all(HBNBCommand.classes[args[0]])
-        else:
+        print_list = []
+
+        args = args.split(' ')[0]  # remove possible trailing args
+        if args not in HBNBCommand.classes:
             print("** class doesn't exist **")
-            return False
-        for key in obj_dict:
-            obj_list.append(str(obj_dict[key]))
-        print("[", end="")
-        print(", ".join(obj_list), end="")
-        print("]")
+            return
+        for k, v in models.storage.all().items():
+            if k.split('.')[0] == args:
+                print_list.append(str(v))
+        else:
+            for k, v in models.storage.all().items():
+                print_list.append(str(v))
+        print(print_list)
 
     def help_all(self):
         """ Help information for the all command """
