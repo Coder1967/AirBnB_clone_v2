@@ -41,9 +41,16 @@ def is_num(n):
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def num_template(n):
-    """replies to /number_template/<int:n> if n is an int"""
+    """ replies /number_template/<n> if n is an int"""
     return render_template("5-number.html", number=n)
 
+
+@app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
+def is_odd(n):
+    """checks if number is even or odd in the route
+    if a positive integer is given
+    """
+     return render_template('6-number_odd_or_even.html', number=n)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
