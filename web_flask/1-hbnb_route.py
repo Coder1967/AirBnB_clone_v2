@@ -2,6 +2,8 @@
 """
 a script that starts up a Flask web application
 """
+
+
 from flask import Flask
 app = Flask(__name__)
 
@@ -10,6 +12,12 @@ app = Flask(__name__)
 def hello():
     """ shown at root of the server"""
     return "Hello HBNB!"
+
+
+@app.route('/hbnb', strict_slashes=False)
+def hbnb():
+    """ called at route /hbnb"""
+    return "HBNB"
 
 
 if __name__ == "__main__":
