@@ -6,4 +6,5 @@ from models import storage
 from models.state import State
 from models.city import City
 
-storage.close()
+state = State()
+print(state.cities);
