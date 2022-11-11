@@ -50,7 +50,7 @@ def is_odd(n):
     """checks if number is even or odd in the route
     if a positive integer is given
     """
-     return render_template('6-number_odd_or_even.html', number=n)
+    return render_template('6-number_odd_or_even.html', number=n)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
