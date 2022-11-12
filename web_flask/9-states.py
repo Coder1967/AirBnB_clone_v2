@@ -14,17 +14,21 @@ def states():
     """Displays a page with a unordered list of all States.
     States are sorted by names
     """
-    states = storage.all("State")
+    states = storage.all(State)
     return render_template("9-states.html", state=states)
 
-
-@app.route("/states/<id>", strict_slashes=False)
-def states_id(id):
-    """Displays a page with info on the state's id if it exists"""
-    for state in storage.all("State").values():
         if state.id == id:
             return render_template("9-states.html", state=state)
     return render_template("9-states.html")
+
+
+@app.route('/states/<state_id>', strict_slashes=False)
+def states(state_id=None):
+    """display the states and cities listed in alphabetical order"""
+    states = storage.all(State)
+    if state_id is not None:
+        state_id = 'State.' + state_id
+    return render_template('9-states.html', states=states, state_id=state_id)
 
 
 @app.teardown_appcontext
