@@ -4,24 +4,13 @@ starts up a flask webserver
 """
 from models import storage
 from flask import Flask
+from models.state import State
 from flask import render_template
 
 app = Flask(__name__)
 
 
 @app.route("/states", strict_slashes=False)
-def states():
-    """Displays a page with a unordered list of all States.
-    States are sorted by names
-    """
-    states = storage.all(State)
-    return render_template("9-states.html", state=states)
-
-        if state.id == id:
-            return render_template("9-states.html", state=state)
-    return render_template("9-states.html")
-
-
 @app.route('/states/<state_id>', strict_slashes=False)
 def states(state_id=None):
     """display the states and cities listed in alphabetical order"""
