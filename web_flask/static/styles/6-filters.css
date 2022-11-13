@@ -58,6 +58,8 @@ position: absolute;
 box-sizing: border-box;
 width: 100%;
 top: 100%;
+max-height: 300px;
+overflow-y: scroll;
 margin-top: 0;
 }
 
